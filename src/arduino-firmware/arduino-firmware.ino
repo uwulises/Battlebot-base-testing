@@ -3,31 +3,40 @@
 String inputString = "";
 bool stringComplete = false;
 
-const int MAX_SPEED_R = 255;
-const int MAX_SPEED_L = 255;
-const int SOFT_SPEED_R = 150;
-const int SOFT_SPEED_L = 150;
-const int STOP_SPEED = 0;
 
 
-// RIGHT MOTOR
-#define DCR1 2    //IN1
-#define DCR2 4    //IN2
-#define PWM_R 3   //SPEED R
+// RIGHT MOTOR BACK
+#define BR1 4    //IN1
+#define BR2 5    //IN2
 
-//LEFT MOTOR
-#define DCL1 10    //IN3
-#define DCL2 11   //IN4
-#define PWM_L 6   //SPEED L
+
+//LEFT MOTOR BACK
+#define BL1 6    //IN3
+#define BL2 7   //IN4
+
+// RIGHT MOTOR FRONT
+#define FR1 8    //IN1
+#define FR2 9    //IN2
+
+
+//LEFT MOTOR FRONT
+#define FL1 10    //IN3
+#define FL2 11   //IN4
+
+
+
 
 void setup()
 {
-  pinMode(DCR1, OUTPUT);
-  pinMode(DCR2, OUTPUT);
-  pinMode(DCL1, OUTPUT);
-  pinMode(DCL2, OUTPUT);
-  pinMode(PWM_R, OUTPUT);
-  pinMode(PWM_L, OUTPUT);
+  pinMode(BR1, OUTPUT);
+  pinMode(BR2, OUTPUT);
+  pinMode(BL1, OUTPUT);
+  pinMode(BL2, OUTPUT);
+  pinMode(FR1, OUTPUT);
+  pinMode(FR2, OUTPUT);
+  pinMode(FL1, OUTPUT);
+  pinMode(FL2, OUTPUT);
+
   //softspeed();
   Serial.begin(9600);
   delay(1000);
@@ -56,60 +65,71 @@ void serialEvent()
 }
 
 
-void BW()
-{
-  digitalWrite(DCR1, HIGH);
-  digitalWrite(DCR2, LOW);
-  digitalWrite(DCL1, LOW);
-  digitalWrite(DCL2, HIGH);
-}
 void FW()
 {
-  digitalWrite(DCR1, LOW);
-  digitalWrite(DCR2, HIGH);
-  digitalWrite(DCL1, HIGH);
-  digitalWrite(DCL2, LOW);
-
+  digitalWrite(BR1, HIGH);
+  digitalWrite(BR2, LOW);
+  digitalWrite(BL1, LOW);
+  digitalWrite(BL2, HIGH);
+  digitalWrite(FR1, HIGH);
+  digitalWrite(FR2, LOW);
+  digitalWrite(FL1, LOW);
+  digitalWrite(FL2, HIGH);
 }
-
-void TR()
+void BW()
 {
-  digitalWrite(DCR1, HIGH);
-  digitalWrite(DCR2, LOW);
-  digitalWrite(DCL1, HIGH);
-  digitalWrite(DCL2, LOW);
+  digitalWrite(BR1, LOW);
+  digitalWrite(BR2, HIGH);
+  digitalWrite(BL1, HIGH);
+  digitalWrite(BL2, LOW);
+  digitalWrite(FR1, LOW);
+  digitalWrite(FR2, HIGH);
+  digitalWrite(FL1, HIGH);
+  digitalWrite(FL2, LOW);
 
 }
 
 void TL()
 {
-  digitalWrite(DCR1, LOW);
-  digitalWrite(DCR2, HIGH);
-  digitalWrite(DCL1, LOW);
-  digitalWrite(DCL2, HIGH);
+  digitalWrite(BR1, HIGH);
+  digitalWrite(BR2, LOW);
+  digitalWrite(BL1, HIGH);
+  digitalWrite(BL2, LOW);
+  digitalWrite(FR1, LOW);
+  digitalWrite(FR2, HIGH);
+  digitalWrite(FL1, LOW);
+  digitalWrite(FL2, HIGH);
+
+}
+
+void TR()
+{
+  digitalWrite(BR1, LOW);
+  digitalWrite(BR2, HIGH);
+  digitalWrite(BL1, LOW);
+  digitalWrite(BL2, HIGH);
+  digitalWrite(FR1, HIGH);
+  digitalWrite(FR2, LOW);
+  digitalWrite(FL1, HIGH);
+  digitalWrite(FL2, LOW);
 }
 
 void STOP()
 {
-  digitalWrite(DCR1, LOW);
-  digitalWrite(DCR2, LOW);
-  digitalWrite(DCL1, LOW);
-  digitalWrite(DCL2, LOW);
-  digitalWrite(PWM_R, STOP_SPEED);
-  digitalWrite(PWM_L, STOP_SPEED);
+  digitalWrite(BR1, LOW);
+  digitalWrite(BR2, LOW);
+  digitalWrite(BL1, LOW);
+  digitalWrite(BL2, LOW);
+  digitalWrite(FR1, LOW);
+  digitalWrite(FR2, LOW);
+  digitalWrite(FL1, LOW);
+  digitalWrite(FL2, LOW);
+
 
 }
-void FULLSPEED()
-{
-  analogWrite(PWM_L, MAX_SPEED_L);
-  analogWrite(PWM_R, MAX_SPEED_R);
-}
 
-void SOFTSPEED()
-{
-  analogWrite(PWM_L, SOFT_SPEED_L);
-  analogWrite(PWM_R, SOFT_SPEED_R);
-}
+
+
 
 void loop()
 {
@@ -134,14 +154,6 @@ void loop()
     if (inputString == "TL\n")
     {
       TL();
-    }
-    if (inputString == "FULLSPEED\n")
-    {
-      FULLSPEED();
-    }
-    if (inputString == "SOFTSPEED\n")
-    {
-      SOFTSPEED();
     }
     if (inputString == "STOP\n")
     {
