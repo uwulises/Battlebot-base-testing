@@ -3,26 +3,25 @@
 String inputString = "";
 bool stringComplete = false;
 
-
-
-// RIGHT MOTOR BACK
-#define BR1 4    //IN1
-#define BR2 5    //IN2
-
-
-//LEFT MOTOR BACK
-#define BL1 6    //IN3
-#define BL2 7   //IN4
-
+// MOTOR A -> A-1A A-1B
 // RIGHT MOTOR FRONT
-#define FR1 8    //IN1
-#define FR2 9    //IN2
+#define FR1 4    //1A
+#define FR2 5    //1B
 
+// MOTOR B -> B 1A B 1B
+// RIGHT MOTOR BACK
+#define BR1 6    //1A
+#define BR2 7    //1B
 
+// MOTOR A -> A-1A A-1B
 //LEFT MOTOR FRONT
-#define FL1 10    //IN3
-#define FL2 11   //IN4
+#define FL1 8    //1A
+#define FL2 9   //1B
 
+// MOTOR B -> B 1A B 1B
+//LEFT MOTOR BACK
+#define BL1 10    //1A
+#define BL2 11   //1B
 
 
 
@@ -69,23 +68,23 @@ void FW()
 {
   digitalWrite(BR1, HIGH);
   digitalWrite(BR2, LOW);
-  digitalWrite(BL1, LOW);
-  digitalWrite(BL2, HIGH);
+  digitalWrite(BL1, HIGH);
+  digitalWrite(BL2, LOW);
   digitalWrite(FR1, HIGH);
   digitalWrite(FR2, LOW);
-  digitalWrite(FL1, LOW);
-  digitalWrite(FL2, HIGH);
+  digitalWrite(FL1, HIGH);
+  digitalWrite(FL2, LOW);
 }
 void BW()
 {
   digitalWrite(BR1, LOW);
   digitalWrite(BR2, HIGH);
-  digitalWrite(BL1, HIGH);
-  digitalWrite(BL2, LOW);
+  digitalWrite(BL1, LOW);
+  digitalWrite(BL2, HIGH);
   digitalWrite(FR1, LOW);
   digitalWrite(FR2, HIGH);
-  digitalWrite(FL1, HIGH);
-  digitalWrite(FL2, LOW);
+  digitalWrite(FL1, LOW);
+  digitalWrite(FL2, HIGH);
 
 }
 
@@ -93,10 +92,10 @@ void TL()
 {
   digitalWrite(BR1, HIGH);
   digitalWrite(BR2, LOW);
-  digitalWrite(BL1, HIGH);
-  digitalWrite(BL2, LOW);
-  digitalWrite(FR1, LOW);
-  digitalWrite(FR2, HIGH);
+  digitalWrite(BL1, LOW);
+  digitalWrite(BL2, HIGH);
+  digitalWrite(FR1, HIGH);
+  digitalWrite(FR2, LOW);
   digitalWrite(FL1, LOW);
   digitalWrite(FL2, HIGH);
 
@@ -106,10 +105,10 @@ void TR()
 {
   digitalWrite(BR1, LOW);
   digitalWrite(BR2, HIGH);
-  digitalWrite(BL1, LOW);
-  digitalWrite(BL2, HIGH);
-  digitalWrite(FR1, HIGH);
-  digitalWrite(FR2, LOW);
+  digitalWrite(BL1, HIGH);
+  digitalWrite(BL2, LOW);
+  digitalWrite(FR1, LOW);
+  digitalWrite(FR2, HIGH);
   digitalWrite(FL1, HIGH);
   digitalWrite(FL2, LOW);
 }
